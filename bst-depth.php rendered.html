@@ -1,0 +1,95 @@
+<pre>The Challenge
+
+Your company needs you to implement a Binary Search Tree (BST), using the language of your choice. Your solution will be utilized by several different teams throughout your organization. Initially, this BST only needs to support integers. 
+
+Requirements
+
+ The BST must be built from an array of integers
+ DONE- Implement a method that returns the deepest nodes in the BST along with their depth
+ - Implement any supporting methods needed for the solution to be useable by different teams throughout the organization
+
+Example:
+	Input: 12,11,90,82,7,9
+	Output: deepest, 9; depth, 3
+
+What we are looking for
+ - Correctness - will your solution produce the desired results
+ - Conciseness - does your solution balance clarity and brevity
+ - Maintainability - does your code stand up to changing needs
+ - Anti-patterns - does your solution avoid anti-patterns
+<hr>
+<b>Demonstration of Tree: Output per requirement spec</b> 
+
+Input: 12,11,90,82,7,9
+Output: deepest, 9; depth, 3<hr>Demonstration of Tree: PlantUML 
+
+<a target="_blank" href="https://www.plantuml.com/plantuml/uml/~h3132207e7e2031313a4c0d0a3131207e7e20373a4c0d0a37207e7e20393a520d0a3132207e7e2039303a520d0a3930207e7e2038323a4c0d0a">Click here to view a mapping of this tree.  This may fail if the input array becomes too large.</a>
+
+The raw plant UML: 
+
+12 ~~ 11:L
+11 ~~ 7:L
+7 ~~ 9:R
+12 ~~ 90:R
+90 ~~ 82:L
+<hr>Debug dump of the tree for review (var_dump($tree)) 
+
+object(BinaryTree)#1 (1) {
+  ["rootNode"]=>
+  object(BinaryTreeNode)#2 (4) {
+    ["value"]=>
+    int(12)
+    ["count"]=>
+    int(1)
+    ["left"]=>
+    object(BinaryTreeNode)#3 (4) {
+      ["value"]=>
+      int(11)
+      ["count"]=>
+      int(1)
+      ["left"]=>
+      object(BinaryTreeNode)#6 (4) {
+        ["value"]=>
+        int(7)
+        ["count"]=>
+        int(1)
+        ["left"]=>
+        NULL
+        ["right"]=>
+        object(BinaryTreeNode)#7 (4) {
+          ["value"]=>
+          int(9)
+          ["count"]=>
+          int(1)
+          ["left"]=>
+          NULL
+          ["right"]=>
+          NULL
+        }
+      }
+      ["right"]=>
+      NULL
+    }
+    ["right"]=>
+    object(BinaryTreeNode)#4 (4) {
+      ["value"]=>
+      int(90)
+      ["count"]=>
+      int(1)
+      ["left"]=>
+      object(BinaryTreeNode)#5 (4) {
+        ["value"]=>
+        int(82)
+        ["count"]=>
+        int(1)
+        ["left"]=>
+        NULL
+        ["right"]=>
+        NULL
+      }
+      ["right"]=>
+      NULL
+    }
+  }
+}
+</pre>
