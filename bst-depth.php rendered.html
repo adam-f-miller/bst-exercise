@@ -6,7 +6,7 @@ Requirements
 
  The BST must be built from an array of integers
  DONE- Implement a method that returns the deepest nodes in the BST along with their depth
- - Implement any supporting methods needed for the solution to be useable by different teams throughout the organization
+ DONE- Implement any supporting methods needed for the solution to be useable by different teams throughout the organization
 
 Example:
 	Input: 12,11,90,82,7,9
@@ -21,7 +21,14 @@ What we are looking for
 <b>Demonstration of Tree: Output per requirement spec</b> 
 
 Input: 12,11,90,82,7,9
-Output: deepest, 9; depth, 3<hr>Demonstration of Tree: PlantUML 
+Output: deepest, 9; depth, 3<hr><b>Demonstration of Tree: Custom Array</b> 
+
+A custom comma separated set of integers can be applied.  Error handling is implemented.<form method="GET">
+<input type="text" name="overrideIntegers">
+<input type="submit">
+</form>
+
+Demonstration of Tree: PlantUML 
 
 <a target="_blank" href="https://www.plantuml.com/plantuml/uml/~h3132207e7e2031313a4c0d0a3131207e7e20373a4c0d0a37207e7e20393a520d0a3132207e7e2039303a520d0a3930207e7e2038323a4c0d0a">Click here to view a mapping of this tree.  This may fail if the input array becomes too large.</a>
 
@@ -32,6 +39,25 @@ The raw plant UML:
 7 ~~ 9:R
 12 ~~ 90:R
 90 ~~ 82:L
+<hr>Demonstration of Searching 
+
+This provides a method by which individual values can be searched.
+Below represents a loop calling findValue method over each element of the integer insert array.
+
+  12 DOES exist, and it has depth [0], ancestors []
+  11 DOES exist, and it has depth [1], ancestors [12]
+  90 DOES exist, and it has depth [1], ancestors [12]
+  82 DOES exist, and it has depth [2], ancestors [12,90]
+  7 DOES exist, and it has depth [2], ancestors [12,11]
+  9 DOES exist, and it has depth [3], ancestors [12,11,7]
+  99999 does NOT exist, but if it did it would have depth [2], ancestors [12,90]
+  -99999 does NOT exist, but if it did it would have depth [3], ancestors [12,11,7]
+  100001 does NOT exist, but if it did it would have depth [2], ancestors [12,90]
+  -100001 does NOT exist, but if it did it would have depth [3], ancestors [12,11,7]
+
+
+Note that some values that hopefully were not in the integer insert array are searched, showing misses.
+
 <hr>Debug dump of the tree for review (var_dump($tree)) 
 
 object(BinaryTree)#1 (1) {
