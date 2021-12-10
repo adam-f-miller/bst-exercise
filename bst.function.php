@@ -56,6 +56,21 @@ class BinaryTree{
 		return $returnString;
 	}
 
+	// Searches rootNode and children to find the location of a proposed value.
+	// - 'exists' => TRUE if element is in the array, FALSE if element is not in the array
+	// - 'count' => an integer of the count, if present.  If not present, 0 is presented.
+	// - 'depth' => an integer of the depth at which the value was found.
+	// - 'ancestry' => an array with index [depth] and value [ancestor value]
+	public function findValue(int $value){
+		if($this->rootNode === NULL){
+			return "";
+		}
+		
+		// leverage node functions to produce data
+		return $this->rootNode->findValue($value);
+	}
+
+
 	// Returns a well-formed UML string that can visualize the Binary Search Tree
 	public function getUML(){
 		// Check empty case
@@ -102,7 +117,6 @@ class BinaryTreeNode{
 	function insertValue(int $value){
 		// validate input is valid
 		if(!is_int($value)){
-			// echo "$value is not an integer.";
 			return;
 		}
 
@@ -166,6 +180,50 @@ class BinaryTreeNode{
 		}
 		return array('maxDepth' => $maxDepth, 'nodes' => $nodes);
 	}
+
+	// Searches node and children to find the location of a proposed value.  Returns an array.
+	// - 'exists' => TRUE if element is in the array, FALSE if element is not in the array
+	// - 'count' => an integer of the count, if present.  If not present, 0 is presented.
+	// - 'depth' => an integer of the depth at which the value was found.
+	// - 'ancestry' => an array with index [depth] and value [ancestor value]
+	function findValue(int $value, $depth = 0, $ancestry = array()){
+		// validate input is valid
+		if(!is_int($value)){
+			return NULL;
+		}
+
+		// If this is the value, then return data on this node
+		if($value === $this->value){
+			return array('exists' => TRUE, 'count' => $this->count, 'depth' => $depth, 'ancestry' => $ancestry);
+		}
+
+		// increment the depth
+		$ancestry[$depth] = $this->value;
+		$depth++;
+		
+		// If the searching value is less than this node value, it's a "left"
+		if($value < $this->value){
+			// If the child is null, then this is the should-be location of the new node.
+			if($this->left === NULL){
+				return array('exists' => FALSE, 'count' => NULL, 'depth' => $depth, 'ancestry' => $ancestry);
+			}
+			// If the child is not null, but also not equal, then the search continues
+			else{ 
+				return $this->left->findValue($value, $depth, $ancestry);
+			}
+		}
+		// If the searching value is greater than this node value, it's a "right"
+		elseif($value > $this->value){
+			// If the child is null, then this is the should-be location of the new node.
+			if($this->right === NULL){
+				return array('exists' => FALSE, 'count' => NULL, 'depth' => $depth, 'ancestry' => $ancestry);
+			}
+			// If the child is not null, but also not equal, then the search continues
+			else{ 
+				return $this->right->findValue($value, $depth, $ancestry);
+			}
+		}
+	} // end findValue
 
 	// Value-add function to generate a UML-formatted string to visually represent the BST. This
 	// creates a string of format [parent value] ~~ [child value]:[L|R] which is compliance with
