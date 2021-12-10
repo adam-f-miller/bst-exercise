@@ -6,7 +6,7 @@ Requirements
 
  The BST must be built from an array of integers
  DONE- Implement a method that returns the deepest nodes in the BST along with their depth
- - Implement any supporting methods needed for the solution to be useable by different teams throughout the organization
+ DONE- Implement any supporting methods needed for the solution to be useable by different teams throughout the organization
 
 Example:
 	Input: 12,11,90,82,7,9
